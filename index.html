@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phooling Around - A Flower Collage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: #f5d96b;
+      color: #3a2e1a;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* floating flower emojis */
+    .deco {
+      position: fixed;
+      pointer-events: none;
+      z-index: 0;
+      font-size: var(--sz);
+      opacity: var(--op);
+      animation: floatDeco var(--dur) ease-in-out infinite;
+      animation-delay: var(--del);
+    }
+
+    @keyframes floatDeco {
+      0%, 100% { transform: translateY(0) rotate(var(--r1)); }
+      50% { transform: translateY(var(--drift)) rotate(var(--r2)); }
+    }
+
+    /* vine border running down left & right */
+    .vine {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      width: 60px;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .vine-left { left: 0; }
+    .vine-right { right: 0; }
+
+    .vine-segment {
+      position: absolute;
+      font-size: 1.4rem;
+      opacity: 0.35;
+      animation: vineGrow 4s ease-in-out infinite;
+      animation-delay: var(--del);
+    }
+
+    @keyframes vineGrow {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.1) rotate(3deg); }
+    }
+
+    /* top decorative garland */
+    .garland {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      font-size: 1.5rem;
+      padding: 1rem 0 0;
+      letter-spacing: 0.3rem;
+      opacity: 0.5;
+      line-height: 1;
+    }
+
+    /* ---- header ---- */
+    header {
+      text-align: center;
+      padding: 2rem 1.5rem 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    header .subtitle {
+      font-size: clamp(0.95rem, 2vw, 1.15rem);
+      color: #6a5020;
+      font-weight: 300;
+    }
+
+    /* ---- collage grid ---- */
+    .collage {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      padding: 1.5rem 3rem 3rem;
+      max-width: 1300px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 1000px) { .collage { grid-template-columns: repeat(2, 1fr); padding: 1.5rem; } }
+    @media (max-width: 600px)  { .collage { grid-template-columns: 1fr; padding: 1rem; } }
+
+    .flower-card {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: pointer;
+      aspect-ratio: 3 / 4;
+      box-shadow: 0 4px 20px rgba(80,50,10,0.2);
+      border: 3px solid rgba(255,255,255,0.35);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      background: #f5e6b8;
+    }
+
+    .flower-card:hover {
+      transform: translateY(-5px) scale(1.01);
+      box-shadow: 0 12px 40px rgba(80,50,10,0.3);
+      border-color: rgba(255,255,255,0.6);
+    }
+
+    .flower-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .flower-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .flower-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 2.5rem 1.2rem 1rem;
+      background: linear-gradient(0deg, rgba(0,0,0,0.55) 0%, transparent 100%);
+      z-index: 1;
+    }
+
+    .flower-label .flower-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.4);
+    }
+
+    .flower-label .flower-hindi {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.8);
+      margin-top: 0.1rem;
+    }
+
+    .flower-label .flower-latin {
+      font-size: 0.78rem;
+      font-style: italic;
+      color: rgba(255,255,255,0.65);
+      margin-top: 0.1rem;
+    }
+
+    .flower-label .flower-location {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.55);
+      margin-top: 0.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .flower-label .flower-location::before {
+      content: '\1F4CD';
+      font-size: 0.65rem;
+    }
+
+    /* hover info panel */
+    .flower-info {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, #fdf6e3 0%, #f8edd0 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: 3;
+    }
+
+    .flower-card:hover .flower-info,
+    .flower-card.active .flower-info {
+      opacity: 1;
+    }
+
+    .flower-info .info-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #6a4a18;
+      margin-bottom: 0.1rem;
+    }
+
+    .flower-info .info-hindi {
+      font-size: 0.95rem;
+      color: #8a6a30;
+      margin-bottom: 0.1rem;
+    }
+
+    .flower-info .info-latin {
+      font-size: 0.82rem;
+      font-style: italic;
+      color: #a08848;
+      margin-bottom: 1rem;
+    }
+
+    .flower-info .info-season {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #f5d96b;
+      color: #4a3010;
+      border-radius: 16px;
+      padding: 0.3rem 0.8rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      width: fit-content;
+    }
+
+    .flower-info .info-season::before {
+      content: '☀';
+    }
+
+    .flower-info .info-location {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(100,80,30,0.12);
+      color: #5a4418;
+      border-radius: 16px;
+      padding: 0.3rem 0.8rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      width: fit-content;
+    }
+
+    .flower-info .info-location::before {
+      content: '\1F4CD';
+      font-size: 0.7rem;
+    }
+
+    .flower-info .info-desc {
+      font-size: 0.88rem;
+      line-height: 1.65;
+      color: #4a3a20;
+    }
+
+    /* ---- modal ---- */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(80,55,15,0.6);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    .modal-backdrop.open { display: flex; }
+
+    .modal {
+      background: #fdf6e3;
+      border-radius: 18px;
+      overflow: hidden;
+      max-width: 680px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 60px rgba(60,40,10,0.4);
+      border: 3px solid rgba(255,255,255,0.3);
+      position: relative;
+    }
+
+    .modal img {
+      width: 100%;
+      max-height: 50vh;
+      object-fit: cover;
+    }
+
+    .modal-body {
+      padding: 1.5rem 2rem 2rem;
+    }
+
+    .modal-body .modal-flower-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #6a4a18;
+      margin-bottom: 0.1rem;
+    }
+
+    .modal-body .modal-flower-hindi {
+      font-size: 1rem;
+      color: #8a6a30;
+      margin-bottom: 0.1rem;
+    }
+
+    .modal-body .modal-flower-latin {
+      font-size: 0.88rem;
+      font-style: italic;
+      color: #a08848;
+      margin-bottom: 1rem;
+    }
+
+    .modal-body .modal-flower-season {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #f5d96b;
+      color: #4a3010;
+      border-radius: 16px;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .modal-body .modal-flower-season::before {
+      content: '☀';
+    }
+
+    .modal-body .modal-flower-location {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(100,80,30,0.12);
+      color: #5a4418;
+      border-radius: 16px;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      margin-left: 0.5rem;
+    }
+
+    .modal-body .modal-flower-location::before {
+      content: '\1F4CD';
+      font-size: 0.75rem;
+    }
+
+    .modal-body .modal-flower-desc {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #4a3a20;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 0.8rem;
+      right: 0.8rem;
+      background: rgba(253,246,227,0.9);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(180,150,80,0.2);
+      color: #6a4a18;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      z-index: 102;
+      transition: background 0.2s, transform 0.2s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    }
+
+    .modal-close:hover {
+      background: #fff;
+      transform: scale(1.08);
+    }
+
+    /* bottom garland */
+    .garland-bottom {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      font-size: 1.3rem;
+      padding: 0.5rem 0;
+      letter-spacing: 0.25rem;
+      opacity: 0.45;
+    }
+
+    /* ---- footer ---- */
+    footer {
+      text-align: center;
+      padding: 1rem 1rem 2.5rem;
+      font-size: 0.82rem;
+      color: rgba(74,48,16,0.55);
+      letter-spacing: 0.03em;
+      position: relative;
+      z-index: 1;
+    }
+
+    footer a {
+      color: #4a3010;
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px dashed rgba(74,48,16,0.4);
+      transition: border-color 0.2s;
+    }
+
+    footer a:hover {
+      border-bottom-style: solid;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top garland -->
+  <div class="garland">🌸🌼🌺🌻🌷🌸🌼🌺🌻🌷🌸🌼🌺🌻🌷</div>
+
+  <header>
+    <p class="subtitle">A collection of flowers I capture while phooling around with my camera.</p>
+  </header>
+
+  <main class="collage" id="collage"></main>
+
+  <div class="modal-backdrop" id="modal">
+    <div class="modal">
+      <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+      <img id="modalImg" src="" alt="">
+      <div class="modal-body">
+        <div class="modal-flower-name" id="modalName"></div>
+        <div class="modal-flower-hindi" id="modalHindi"></div>
+        <div class="modal-flower-latin" id="modalLatin"></div>
+        <div style="display:flex;flex-wrap:wrap;gap:0.25rem;">
+          <div class="modal-flower-season" id="modalSeason"></div>
+          <div class="modal-flower-location" id="modalLocation"></div>
+        </div>
+        <div class="modal-flower-desc" id="modalDesc"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="garland-bottom">🌷🌻🌺🌼🌸🌷🌻🌺🌼🌸🌷🌻🌺🌼🌸</div>
+
+  <footer>Created by Claude because <a target="__blank" href="https://x.com/talrejajeee">@talrejajeee</a> asked it to. 🌸</footer>
+
+  <script src="flowers.js"></script>
+  <script>
+    // ===== Floating background flower emojis =====
+    const decoEmojis = ['🌸','🌼','🌺','🌻','🌷','🪻','🌹','💐','🍃','🌿','🪷','☘️','🍀','💮','🏵️'];
+    const body = document.body;
+
+    for (let i = 0; i < 30; i++) {
+      const d = document.createElement('div');
+      d.className = 'deco';
+      d.textContent = decoEmojis[Math.floor(Math.random() * decoEmojis.length)];
+      const sz = 1.2 + Math.random() * 1.8;
+      const x = Math.random() * 96 + 2;
+      const y = Math.random() * 94 + 3;
+      const op = 0.08 + Math.random() * 0.15;
+      const r1 = -15 + Math.random() * 30;
+      const r2 = r1 + (Math.random() > 0.5 ? 1 : -1) * (5 + Math.random() * 15);
+      const drift = -8 + Math.random() * 16;
+      d.style.cssText = `
+        left:${x}%;top:${y}%;
+        --sz:${sz}rem;--op:${op};
+        --r1:${r1}deg;--r2:${r2}deg;
+        --drift:${drift}px;
+        --dur:${5+Math.random()*6}s;--del:${-Math.random()*8}s;
+      `;
+      body.appendChild(d);
+    }
+
+    // ===== Vine borders =====
+    const vineEmojis = ['🌿','🍃','🌱','☘️','🍀','🌾'];
+    ['vine-left','vine-right'].forEach(cls => {
+      const vine = document.createElement('div');
+      vine.className = `vine ${cls}`;
+      for (let i = 0; i < 20; i++) {
+        const seg = document.createElement('div');
+        seg.className = 'vine-segment';
+        seg.textContent = vineEmojis[Math.floor(Math.random() * vineEmojis.length)];
+        const y = (i / 20) * 100;
+        const x = 5 + Math.random() * 30;
+        seg.style.cssText = `
+          top:${y}%;${cls === 'vine-left' ? 'left' : 'right'}:${x}px;
+          --del:${-Math.random()*4}s;
+          transform:rotate(${-20+Math.random()*40}deg);
+        `;
+        vine.appendChild(seg);
+      }
+      body.appendChild(vine);
+    });
+
+    // ===== Flower cards =====
+    const collage = document.getElementById("collage");
+    const modal = document.getElementById("modal");
+    const modalClose = document.getElementById("modalClose");
+
+    flowers.forEach((flower) => {
+      const card = document.createElement("div");
+      card.className = "flower-card";
+      card.innerHTML = `
+        <img src="${flower.img}" alt="${flower.name}" loading="lazy">
+        <div class="flower-label">
+          <div class="flower-name">${flower.name}</div>
+          <div class="flower-hindi">${flower.hindi}</div>
+          <div class="flower-latin">${flower.latin}</div>
+          <div class="flower-location">${flower.location}</div>
+        </div>
+        <div class="flower-info">
+          <div class="info-name">${flower.name}</div>
+          <div class="info-hindi">${flower.hindi}</div>
+          <div class="info-latin">${flower.latin}</div>
+          <div class="info-season">${flower.season}</div>
+          <div class="info-location">${flower.location}</div>
+          <div class="info-desc">${flower.desc}</div>
+        </div>
+      `;
+      card.addEventListener("click", () => openModal(flower));
+      collage.appendChild(card);
+    });
+
+    function openModal(flower) {
+      document.getElementById("modalImg").src = flower.img;
+      document.getElementById("modalImg").alt = flower.name;
+      document.getElementById("modalName").textContent = flower.name;
+      document.getElementById("modalHindi").textContent = flower.hindi;
+      document.getElementById("modalLatin").textContent = flower.latin;
+      document.getElementById("modalSeason").textContent = flower.season;
+      document.getElementById("modalLocation").textContent = flower.location;
+      document.getElementById("modalDesc").textContent = flower.desc;
+      modal.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeModal() {
+      modal.classList.remove("open");
+      document.body.style.overflow = "";
+    }
+
+    modalClose.addEventListener("click", closeModal);
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeModal();
+    });
+  </script>
+
+</body>
+</html>
