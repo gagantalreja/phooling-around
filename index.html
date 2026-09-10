@@ -7,119 +7,179 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="icon" type="image/x-icon" href="images/icon.png">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Nunito', sans-serif;
-      background: #fae9a0;
-      color: #3a2e1a;
+      background: #1a1a1a;
+      color: #eee;
       min-height: 100vh;
       overflow-x: hidden;
-      position: relative;
     }
 
-    /* floating flower emojis */
-    .deco {
-      position: fixed;
-      pointer-events: none;
-      z-index: 0;
-      font-size: var(--sz);
-      opacity: var(--op);
-      animation: floatDeco var(--dur) ease-in-out infinite;
-      animation-delay: var(--del);
+    .layout {
+      display: flex;
+      min-height: 100vh;
     }
 
-    @keyframes floatDeco {
-      0%, 100% { transform: translateY(0) rotate(var(--r1)); }
-      50% { transform: translateY(var(--drift)) rotate(var(--r2)); }
-    }
-
-    /* vine border running down left & right */
-    .vine {
+    /* ---- left sidebar ---- */
+    .sidebar {
+      width: 240px;
+      flex-shrink: 0;
+      background: #111;
       position: fixed;
       top: 0;
+      left: 0;
       bottom: 0;
-      width: 60px;
-      z-index: 0;
-      pointer-events: none;
-      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2.5rem 2rem;
+      z-index: 10;
+      border-right: 1px solid rgba(255,255,255,0.06);
     }
 
-    .vine-left { left: 0; }
-    .vine-right { right: 0; }
-
-    .vine-segment {
-      position: absolute;
-      font-size: 1.4rem;
-      opacity: 0.35;
-      animation: vineGrow 4s ease-in-out infinite;
-      animation-delay: var(--del);
+    .sidebar-top {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
     }
 
-    @keyframes vineGrow {
-      0%, 100% { transform: scale(1) rotate(0deg); }
-      50% { transform: scale(1.1) rotate(3deg); }
+    .title {
+      font-family: 'Caveat', cursive;
+      font-size: 2.1rem;
+      font-weight: 700;
+      white-space: nowrap;
     }
 
-    /* top decorative garland */
-    .garland {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      font-size: 1.5rem;
-      padding: 1rem 0 0;
-      letter-spacing: 0.3rem;
-      opacity: 0.5;
-      line-height: 1;
+    .title .phooling {
+      color: #ff8fa3;
     }
 
-    /* ---- header ---- */
-    header {
-      text-align: center;
-      padding: 2rem 1.5rem 2rem;
-      position: relative;
-      z-index: 1;
+    .title .around {
+      color: #ffd166;
     }
 
-    header .subtitle {
-      font-size: clamp(0.95rem, 2vw, 1.15rem);
-      color: #6a5020;
-      font-weight: 300;
+    .counter {
+      display: inline-block;
+      background: rgba(255,255,255,0.08);
+      border: 1px dashed rgba(255,255,255,0.2);
+      border-radius: 20px;
+      padding: 0.3rem 0.9rem;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.55);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      width: fit-content;
     }
 
-    /* ---- collage grid ---- */
+    /* ---- filters ---- */
+    .controls {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .filter-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.35);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .filter-pill {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.55);
+      padding: 0.25rem 0.65rem;
+      border-radius: 14px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .filter-pill:hover { background: rgba(255,255,255,0.12); }
+
+    .filter-pill.active {
+      background: rgba(255,255,255,0.88);
+      color: #111;
+      border-color: rgba(255,255,255,0.88);
+    }
+
+    .filter-pill.active[data-value="Spring"] {
+      background: #a8d5a2;
+      color: #1a3a18;
+      border-color: #a8d5a2;
+    }
+
+    .filter-pill.active[data-value="Summer"] {
+      background: #ffd166;
+      color: #3a2e0a;
+      border-color: #ffd166;
+    }
+
+    .filter-pill.active[data-value="Monsoon"] {
+      background: #7ec8e3;
+      color: #0e2f3d;
+      border-color: #7ec8e3;
+    }
+
+    .filter-pill.active[data-value="Year-round"] {
+      background: #d4a5e5;
+      color: #2a1535;
+      border-color: #d4a5e5;
+    }
+
+    /* ---- sidebar footer ---- */
+    .sidebar-bottom {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    footer {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.3);
+      line-height: 1.5;
+    }
+
+    footer a {
+      color: #c0392b;
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px dashed rgba(192,57,43,0.4);
+      transition: border-color 0.2s;
+    }
+
+    footer a:hover { border-bottom-style: solid; }
+
+    /* ---- image grid ---- */
     .collage {
+      margin-left: 240px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      padding: 1.5rem 3rem 3rem;
-      max-width: 1300px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
+      gap: 2px;
+      min-height: 100vh;
     }
-
-    @media (max-width: 1000px) { .collage { grid-template-columns: repeat(2, 1fr); padding: 1.5rem; } }
-    @media (max-width: 600px)  { .collage { grid-template-columns: 1fr; padding: 1rem; } }
 
     .flower-card {
       position: relative;
-      border-radius: 16px;
       overflow: hidden;
       cursor: pointer;
       aspect-ratio: 3 / 4;
-      box-shadow: 0 4px 20px rgba(80,50,10,0.2);
-      border: 3px solid rgba(255,255,255,0.35);
-      transition: transform 0.35s ease, box-shadow 0.35s ease;
-      background: #f5e6b8;
-    }
-
-    .flower-card:hover {
-      transform: translateY(-5px) scale(1.01);
-      box-shadow: 0 12px 40px rgba(80,50,10,0.3);
-      border-color: rgba(255,255,255,0.6);
+      background: #222;
     }
 
     .flower-card img {
@@ -131,7 +191,7 @@
     }
 
     .flower-card:hover img {
-      transform: scale(1.05);
+      transform: scale(1.08);
     }
 
     .flower-label {
@@ -139,44 +199,44 @@
       bottom: 0;
       left: 0;
       right: 0;
-      padding: 2.5rem 1.2rem 1rem;
-      background: linear-gradient(0deg, rgba(0,0,0,0.55) 0%, transparent 100%);
+      padding: 2.5rem 1rem 0.8rem;
+      background: linear-gradient(0deg, rgba(0,0,0,0.6) 0%, transparent 100%);
       z-index: 1;
     }
 
     .flower-label .flower-name {
       font-family: 'Playfair Display', serif;
-      font-size: 1.35rem;
+      font-size: 1.2rem;
       font-weight: 700;
       color: #fff;
       text-shadow: 0 1px 6px rgba(0,0,0,0.4);
     }
 
     .flower-label .flower-hindi {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: rgba(255,255,255,0.8);
       margin-top: 0.1rem;
     }
 
     .flower-label .flower-latin {
-      font-size: 0.78rem;
+      font-size: 0.72rem;
       font-style: italic;
-      color: rgba(255,255,255,0.65);
+      color: rgba(255,255,255,0.6);
       margin-top: 0.1rem;
     }
 
     .flower-label .flower-location {
-      font-size: 0.72rem;
-      color: rgba(255,255,255,0.55);
-      margin-top: 0.2rem;
+      font-size: 0.68rem;
+      color: rgba(255,255,255,0.5);
+      margin-top: 0.15rem;
       display: flex;
       align-items: center;
-      gap: 0.3rem;
+      gap: 0.25rem;
     }
 
     .flower-label .flower-location::before {
       content: '\1F4CD';
-      font-size: 0.65rem;
+      font-size: 0.6rem;
     }
 
     /* hover info panel */
@@ -187,7 +247,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 2rem 1.5rem;
+      padding: 1.8rem 1.3rem;
       opacity: 0;
       transition: opacity 0.4s ease;
       z-index: 3;
@@ -200,23 +260,23 @@
 
     .flower-info .info-name {
       font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       font-weight: 700;
       color: #6a4a18;
       margin-bottom: 0.1rem;
     }
 
     .flower-info .info-hindi {
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       color: #8a6a30;
       margin-bottom: 0.1rem;
     }
 
     .flower-info .info-latin {
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       font-style: italic;
       color: #a08848;
-      margin-bottom: 1rem;
+      margin-bottom: 0.8rem;
     }
 
     .flower-info .info-season {
@@ -226,16 +286,14 @@
       background: #fae9a0;
       color: #4a3010;
       border-radius: 16px;
-      padding: 0.3rem 0.8rem;
-      font-size: 0.78rem;
+      padding: 0.25rem 0.7rem;
+      font-size: 0.72rem;
       font-weight: 600;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
       width: fit-content;
     }
 
-    .flower-info .info-season::before {
-      content: '☀';
-    }
+    .flower-info .info-season::before { content: '☀'; }
 
     .flower-info .info-location {
       display: inline-flex;
@@ -244,22 +302,30 @@
       background: rgba(100,80,30,0.12);
       color: #5a4418;
       border-radius: 16px;
-      padding: 0.3rem 0.8rem;
-      font-size: 0.78rem;
+      padding: 0.25rem 0.7rem;
+      font-size: 0.72rem;
       font-weight: 600;
-      margin-bottom: 1rem;
+      margin-bottom: 0.8rem;
       width: fit-content;
     }
 
     .flower-info .info-location::before {
       content: '\1F4CD';
-      font-size: 0.7rem;
+      font-size: 0.65rem;
     }
 
     .flower-info .info-desc {
-      font-size: 0.88rem;
-      line-height: 1.65;
+      font-size: 0.82rem;
+      line-height: 1.6;
       color: #4a3a20;
+    }
+
+    .no-results {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 3rem 1rem;
+      color: rgba(255,255,255,0.5);
+      font-size: 1rem;
     }
 
     /* ---- modal ---- */
@@ -267,7 +333,7 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(80,55,15,0.6);
+      background: rgba(0,0,0,0.7);
       backdrop-filter: blur(10px);
       z-index: 100;
       justify-content: center;
@@ -287,8 +353,8 @@
       overflow-y: auto;
       display: flex;
       flex-direction: column;
-      box-shadow: 0 20px 60px rgba(60,40,10,0.4);
-      border: 3px solid rgba(255,255,255,0.3);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      border: 3px solid rgba(255,255,255,0.1);
       position: relative;
     }
 
@@ -336,9 +402,7 @@
       margin-bottom: 1rem;
     }
 
-    .modal-body .modal-flower-season::before {
-      content: '☀';
-    }
+    .modal-body .modal-flower-season::before { content: '☀'; }
 
     .modal-body .modal-flower-location {
       display: inline-flex;
@@ -389,51 +453,43 @@
       transform: scale(1.08);
     }
 
-    /* bottom garland */
-    .garland-bottom {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      font-size: 1.3rem;
-      padding: 0.5rem 0;
-      letter-spacing: 0.25rem;
-      opacity: 0.45;
+    /* ---- responsive: collapse sidebar on small screens ---- */
+    @media (max-width: 900px) {
+      .layout { flex-direction: column; }
+      .sidebar {
+        position: relative;
+        width: 100%;
+        padding: 1.5rem 1.5rem;
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .sidebar-top { gap: 1rem; }
+      .collage { margin-left: 0; grid-template-columns: repeat(2, 1fr); }
     }
 
-    /* ---- footer ---- */
-    footer {
-      text-align: center;
-      padding: 1rem 1rem 2.5rem;
-      font-size: 0.82rem;
-      color: rgba(74,48,16,0.55);
-      letter-spacing: 0.03em;
-      position: relative;
-      z-index: 1;
-    }
-
-    footer a {
-      color: #4a3010;
-      text-decoration: none;
-      font-weight: 600;
-      border-bottom: 1px dashed rgba(74,48,16,0.4);
-      transition: border-color 0.2s;
-    }
-
-    footer a:hover {
-      border-bottom-style: solid;
+    @media (max-width: 500px) {
+      .collage { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Top garland -->
-  <div class="garland">🌸🌼🌺🌻🌷🌸🌼🌺🌻🌷🌸🌼🌺🌻🌷</div>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-top">
+        <h1 class="title"><span class="phooling">Phooling</span> <span class="around">Around</span></h1>
+        <div class="counter" id="counter"></div>
+        <div class="controls" id="controls"></div>
+      </div>
+      <div class="sidebar-bottom">
+        <footer>Created by Claude because <a target="__blank" href="https://x.com/talrejajeee">@talrejajeee</a> asked it to. 🌸</footer>
+      </div>
+    </aside>
 
-  <header>
-    <p class="subtitle">This website is the result of me phooling around with my camera.</p>
-  </header>
-
-  <main class="collage" id="collage"></main>
+    <main class="collage" id="collage"></main>
+  </div>
 
   <div class="modal-backdrop" id="modal">
     <div class="modal">
@@ -452,59 +508,68 @@
     </div>
   </div>
 
-  <div class="garland-bottom">🌷🌻🌺🌼🌸🌷🌻🌺🌼🌸🌷🌻🌺🌼🌸</div>
-
-  <footer>Created by Claude because <a target="__blank" href="https://x.com/talrejajeee">@talrejajeee</a> asked it to. 🌸</footer>
-
   <script src="flowers.js"></script>
   <script>
-    // ===== Floating background flower emojis =====
-    const decoEmojis = ['🌸','🌼','🌺','🌻','🌷','🪻','🌹','💐','🍃','🌿','🪷','☘️','🍀','💮','🏵️'];
-    const body = document.body;
+    // ===== Controls: season filter =====
+    const seasonCategories = ['Spring', 'Summer', 'Monsoon', 'Year-round'];
 
-    for (let i = 0; i < 30; i++) {
-      const d = document.createElement('div');
-      d.className = 'deco';
-      d.textContent = decoEmojis[Math.floor(Math.random() * decoEmojis.length)];
-      const sz = 1.2 + Math.random() * 1.8;
-      const x = Math.random() * 96 + 2;
-      const y = Math.random() * 94 + 3;
-      const op = 0.08 + Math.random() * 0.15;
-      const r1 = -15 + Math.random() * 30;
-      const r2 = r1 + (Math.random() > 0.5 ? 1 : -1) * (5 + Math.random() * 15);
-      const drift = -8 + Math.random() * 16;
-      d.style.cssText = `
-        left:${x}%;top:${y}%;
-        --sz:${sz}rem;--op:${op};
-        --r1:${r1}deg;--r2:${r2}deg;
-        --drift:${drift}px;
-        --dur:${5+Math.random()*6}s;--del:${-Math.random()*8}s;
-      `;
-      body.appendChild(d);
-    }
+    let activeSeason = 'All';
+    const controls = document.getElementById('controls');
+    controls.innerHTML = `
+      <span class="filter-label">Season</span>
+      <div class="filter-pills">
+        <button class="filter-pill active" data-value="All">All</button>
+        ${seasonCategories.map(s => `<button class="filter-pill" data-value="${s}">${s}</button>`).join('')}
+      </div>
+    `;
 
-    // ===== Vine borders =====
-    const vineEmojis = ['🌿','🍃','🌱','☘️','🍀','🌾'];
-    ['vine-left','vine-right'].forEach(cls => {
-      const vine = document.createElement('div');
-      vine.className = `vine ${cls}`;
-      for (let i = 0; i < 20; i++) {
-        const seg = document.createElement('div');
-        seg.className = 'vine-segment';
-        seg.textContent = vineEmojis[Math.floor(Math.random() * vineEmojis.length)];
-        const y = (i / 20) * 100;
-        const x = 5 + Math.random() * 30;
-        seg.style.cssText = `
-          top:${y}%;${cls === 'vine-left' ? 'left' : 'right'}:${x}px;
-          --del:${-Math.random()*4}s;
-          transform:rotate(${-20+Math.random()*40}deg);
-        `;
-        vine.appendChild(seg);
-      }
-      body.appendChild(vine);
+    controls.addEventListener('click', (e) => {
+      const pill = e.target.closest('.filter-pill');
+      if (!pill) return;
+      activeSeason = pill.dataset.value;
+      controls.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      applyFilters();
     });
 
-    // ===== Flower cards =====
+    function getFilteredFlowers() {
+      return flowers.filter(f => {
+        return activeSeason === 'All' || f.season.toLowerCase().includes(activeSeason.toLowerCase());
+      });
+    }
+
+    function applyFilters() {
+      const filtered = getFilteredFlowers();
+      const cards = collage.querySelectorAll('.flower-card');
+      cards.forEach((card, i) => {
+        card.style.display = filtered.includes(flowers[i]) ? '' : 'none';
+      });
+
+      const noRes = collage.querySelector('.no-results');
+      if (filtered.length === 0) {
+        if (!noRes) {
+          const msg = document.createElement('div');
+          msg.className = 'no-results';
+          msg.textContent = 'No flowers match this filter.';
+          collage.appendChild(msg);
+        }
+      } else if (noRes) {
+        noRes.remove();
+      }
+
+      document.getElementById('counter').textContent = filtered.length === flowers.length
+        ? `🌼 ${flowers.length} and counting`
+        : `🌼 ${filtered.length} of ${flowers.length} flowers`;
+    }
+
+    // ===== Shuffle & build flower cards =====
+    for (let i = flowers.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [flowers[i], flowers[j]] = [flowers[j], flowers[i]];
+    }
+
+    document.getElementById("counter").textContent = `🌼 ${flowers.length} and counting`;
+
     const collage = document.getElementById("collage");
     const modal = document.getElementById("modal");
     const modalClose = document.getElementById("modalClose");
