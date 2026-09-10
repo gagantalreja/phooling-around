@@ -106,5 +106,14 @@ const flowers = [
     location: "Hyderabad, IN",
     season: "Year-round (peak: Monsoon)",
     desc: "Lantana produces dense clusters of tiny flowers that shift colour as they age, from pink to purple and lilac. Though beautiful, it's considered invasive in many regions. Its rough, aromatic leaves are a distinguishing feature."
+  },
+  {
+    img: "images/ixora.jpg",
+    name: "Ixora",
+    hindi: "रुक्मिणी",
+    latin: "Ixora coccinea",
+    location: "Hyderabad, IN",
+    season: "Year-round (peak: Summer–Monsoon)",
+    desc: "Also known as Jungle Geranium or Flame of the Woods, Ixora produces dense dome-shaped clusters of vibrant star-shaped flowers. A popular hedge and garden plant across tropical India, it attracts butterflies and is used in traditional medicine."
   }
 ];
