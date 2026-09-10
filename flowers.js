@@ -21,10 +21,10 @@ const flowers = [
     img: "images/pseuderanthemum.jpg",
     name: "Carruthers Falseface",
     hindi: "गुलशाम",
-    latin: "Pseuderanthemum laxiflorum",
+    latin: "Pseuderanthemum carruthersii",
     location: "Hyderabad, IN",
     season: "Year-round in tropics (peak: Spring–Summer)",
-    desc: "This elegant tropical shrub produces delicate spikes of white flowers with purple speckled markings. It's commonly used as an ornamental in landscaping, thriving in partial shade to full sun."
+    desc: "Also known as False Face or Shooting Star, this tropical shrub produces elegant spikes of white flowers with purple speckled markings. Native to Polynesia, it's widely used as an ornamental in landscaping across tropical regions."
   },
   {
     img: "images/oleander.jpg",
@@ -52,5 +52,59 @@ const flowers = [
     location: "Lucknow, IN",
     season: "Year-round (peak: Summer–Monsoon)",
     desc: "Known as Sadabahar ('ever-blooming') in Hindi, the Periwinkle is a low-maintenance flower that blooms continuously in tropical climates. Its five-petalled pink or white flowers brighten gardens year-round and it has important medicinal properties."
+  },
+  {
+    img: "images/canna-lily-striata.jpg",
+    name: "Striped Canna Lily",
+    hindi: "धारीदार केली",
+    latin: "Canna 'Striata'",
+    location: "Hyderabad, IN",
+    season: "Summer & Monsoon (Jun–Oct)",
+    desc: "A striking cultivar of the Canna Lily prized for its vivid orange blooms and distinctive variegated leaves with bold green and yellow stripes. A favourite for adding both colour and texture to tropical gardens."
+  },
+  {
+    img: "images/oleander-pink.jpg",
+    name: "Pink Oleander",
+    hindi: "गुलाबी कनेर",
+    latin: "Nerium oleander",
+    location: "Hyderabad, IN",
+    season: "Spring & Summer (Mar–Sep)",
+    desc: "A soft pink variety of the Oleander, producing delicate clusters of peach-pink funnel-shaped flowers. Like all oleanders, it is extremely hardy and drought-tolerant but highly toxic in all parts."
+  },
+  {
+    img: "images/portulaca-pink.jpg",
+    name: "Moss Rose",
+    hindi: "नौ बजिया",
+    latin: "Portulaca grandiflora",
+    location: "Hyderabad, IN",
+    season: "Summer & Monsoon (May–Oct)",
+    desc: "The Moss Rose is a low-growing succulent that produces vibrant, rose-like flowers in hot pink and magenta. Its blooms open with the morning sun and close by afternoon. Thrives in poor, sandy soil and intense heat."
+  },
+  {
+    img: "images/portulaca-yellow.jpg",
+    name: "Yellow Moss Rose",
+    hindi: "पीली नौ बजिया",
+    latin: "Portulaca grandiflora",
+    location: "Hyderabad, IN",
+    season: "Summer & Monsoon (May–Oct)",
+    desc: "The yellow variety of Moss Rose produces cheerful golden blooms with bright orange centres. A sun-loving ground cover that's virtually indestructible, it's a common sight in Indian gardens and roadside plantings."
+  },
+  {
+    img: "images/oleander-white.jpg",
+    name: "White Oleander",
+    hindi: "सफ़ेद कनेर",
+    latin: "Nerium oleander",
+    location: "Hyderabad, IN",
+    season: "Spring & Summer (Mar–Sep)",
+    desc: "The white-flowering variety of Oleander produces clusters of pure white, fragrant blooms. Often planted along highways and in public parks for its resilience and year-round greenery. All parts are poisonous."
+  },
+  {
+    img: "images/lantana.jpg",
+    name: "Lantana",
+    hindi: "लैंटाना",
+    latin: "Lantana camara",
+    location: "Hyderabad, IN",
+    season: "Year-round (peak: Monsoon)",
+    desc: "Lantana produces dense clusters of tiny flowers that shift colour as they age, from pink to purple and lilac. Though beautiful, it's considered invasive in many regions. Its rough, aromatic leaves are a distinguishing feature."
   }
 ];
