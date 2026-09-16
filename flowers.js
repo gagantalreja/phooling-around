@@ -101,7 +101,7 @@ const flowers = [
   {
     img: "images/lantana.jpg",
     name: "Lantana",
-    hindi: "लैंटाना",
+    hindi: "राईमुनिया",
     latin: "Lantana camara",
     location: "Hyderabad, IN",
     season: "Year-round (peak: Monsoon)",
@@ -115,5 +115,68 @@ const flowers = [
     location: "Hyderabad, IN",
     season: "Year-round (peak: Summer–Monsoon)",
     desc: "Also known as Jungle Geranium or Flame of the Woods, Ixora produces dense dome-shaped clusters of vibrant star-shaped flowers. A popular hedge and garden plant across tropical India, it attracts butterflies and is used in traditional medicine."
+  },
+  {
+    img: "images/cordia.jpg",
+    name: "Scarlet Cordia",
+    hindi: "लाल लसोड़ा",
+    latin: "Cordia sebestena",
+    location: "Hyderabad, IN",
+    season: "Year-round (peak: Summer–Monsoon)",
+    desc: "The Scarlet Cordia, also known as Geiger Tree, produces clusters of crinkled orange-red flowers against large, rough sandpaper-textured leaves. Native to the Americas, it thrives in tropical heat and is widely planted as an ornamental street tree."
+  },
+  {
+    img: "images/ixora-pink.jpg",
+    name: "Pink Ixora",
+    hindi: "गुलाबी रुक्मिणी",
+    latin: "Ixora coccinea",
+    location: "Hyderabad, IN",
+    season: "Year-round (peak: Summer–Monsoon)",
+    desc: "The pink variety of Ixora produces soft pastel dome-shaped clusters of delicate star-shaped flowers. Like its red cousin, it's a popular hedge plant across tropical India, attracting butterflies and adding gentle colour to gardens."
+  },
+  {
+    img: "images/tecoma.jpg",
+    name: "Yellow Bells",
+    hindi: "गोरी-चोरी",
+    latin: "Tecoma stans",
+    location: "Hyderabad, IN",
+    season: "Year-round (peak: Summer–Monsoon)",
+    desc: "Yellow Bells, also known as Yellow Elder or Trumpet Bush, produces bright golden trumpet-shaped flowers with orange-red streaks in the throat. An extremely hardy shrub that blooms profusely, it's one of the most common ornamental plants in Indian cities."
+  },
+  {
+    img: "images/cape-honeysuckle.jpg",
+    name: "Cape Honeysuckle",
+    hindi: "टिकोमा",
+    latin: "Tecomaria capensis",
+    location: "Hyderabad, IN",
+    season: "Year-round (peak: Monsoon)",
+    desc: "Cape Honeysuckle is a scrambling shrub that produces clusters of bright orange tubular flowers with protruding stamens. Native to southern Africa, it's widely used as a hedge and ground cover in Indian gardens, attracting sunbirds and butterflies."
+  },
+  {
+    img: "images/trumpet-vine.jpg",
+    name: "Trumpet Vine",
+    hindi: "तिलोत्तमा",
+    latin: "Campsis grandiflora",
+    location: "Hyderabad, IN",
+    season: "Summer & Monsoon (Jun–Oct)",
+    desc: "The Trumpet Vine produces striking red-orange funnel-shaped flowers with long, gracefully protruding yellow stamens. A vigorous climber, it drapes over walls and fences, adding a burst of fiery colour to monsoon gardens."
+  },
+  {
+    img: "images/lantana-yellow.jpg",
+    name: "Yellow Lantana",
+    hindi: "पीली राईमुनिया",
+    latin: "Lantana camara",
+    location: "Hyderabad, IN",
+    season: "Year-round (peak: Monsoon)",
+    desc: "The golden-yellow variety of Lantana produces dense clusters of sunny, warm-toned flowers that cascade over walls and planters. Like all lantanas, it's extremely hardy and drought-tolerant, blooming year-round in tropical climates."
+  },
+  {
+    img: "images/costus.jpg",
+    name: "Red Button Ginger",
+    hindi: "लाल अदरक फूल",
+    latin: "Costus woodsonii",
+    location: "Hyderabad, IN",
+    season: "Summer & Monsoon (Jun–Oct)",
+    desc: "Red Button Ginger produces striking waxy red cone-shaped inflorescences with orange-tipped bracts, emerging from a spiral arrangement of broad, glossy green leaves. A tropical ornamental from Central America, it thrives in shaded, humid garden beds."
   }
 ];
