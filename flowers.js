@@ -178,5 +178,32 @@ const flowers = [
     location: "Hyderabad, IN",
     season: "Summer & Monsoon (Jun–Oct)",
     desc: "Red Button Ginger produces striking waxy red cone-shaped inflorescences with orange-tipped bracts, emerging from a spiral arrangement of broad, glossy green leaves. A tropical ornamental from Central America, it thrives in shaded, humid garden beds."
+  },
+  {
+    img: "images/mussaenda.jpg",
+    name: "Red Mussaenda",
+    hindi: "बेदिना",
+    latin: "Mussaenda erythrophylla",
+    location: "Hyderabad, IN",
+    season: "Summer & Monsoon (Jun–Oct)",
+    desc: "Red Mussaenda is a tropical shrub prized for its showy crimson sepals that resemble large coloured leaves, surrounding tiny cream-white star-shaped flowers. Native to West Africa, it adds dramatic colour to gardens and is commonly used in landscaping across India."
+  },
+  {
+    img: "images/ixora-red.jpg",
+    name: "Red Ixora",
+    hindi: "लाल रुक्मिणी",
+    latin: "Ixora coccinea",
+    location: "Hyderabad, IN",
+    season: "Year-round (peak: Summer–Monsoon)",
+    desc: "The vibrant red variety of Ixora produces dense dome-shaped clusters of brilliant scarlet star-shaped flowers. One of the most popular hedge plants across tropical India, it blooms prolifically and attracts butterflies and sunbirds."
+  },
+  {
+    img: "images/spider-lily.jpg",
+    name: "Spider Lily",
+    hindi: "सुदर्शन",
+    latin: "Hymenocallis littoralis",
+    location: "Hyderabad, IN",
+    season: "Monsoon (Jul–Sep)",
+    desc: "The Spider Lily produces elegant white flowers with long, thin, curving petals that radiate outward like spider legs, accented by bright orange anthers. A bulbous perennial native to the Americas, it thrives in moist, shaded garden beds and along water features."
   }
 ];
