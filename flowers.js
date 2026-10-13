@@ -205,5 +205,41 @@ const flowers = [
     location: "Hyderabad, IN",
     season: "Monsoon (Jul–Sep)",
     desc: "The Spider Lily produces elegant white flowers with long, thin, curving petals that radiate outward like spider legs, accented by bright orange anthers. A bulbous perennial native to the Americas, it thrives in moist, shaded garden beds and along water features."
+  },
+  {
+    img: "images/allamanda.jpg",
+    name: "Bush Allamanda",
+    hindi: "अलकनंदा",
+    latin: "Allamanda schottii",
+    location: "Hyderabad, IN",
+    season: "Year-round (peak: Summer–Monsoon)",
+    desc: "Bush Allamanda is a compact shrub that produces cheerful golden-yellow funnel-shaped flowers with five broad petals. Unlike its climbing cousin, it stays bushy and low, making it a popular choice for garden borders and planters across tropical India."
+  },
+  {
+    img: "images/glorybower.jpg",
+    name: "Glorybower",
+    hindi: "भारंगी",
+    latin: "Clerodendrum x speciosum",
+    location: "Hyderabad, IN",
+    season: "Summer & Monsoon (Jun–Oct)",
+    desc: "The Glorybower produces cascading panicles of vivid red flowers emerging from dark purple calyces, with long protruding stamens that give it an airy, dramatic look. A vigorous tropical climber, it adds a splash of fiery colour to walls and trellises."
+  },
+  {
+    img: "images/pagoda-flower.jpg",
+    name: "Pagoda Flower",
+    hindi: "अग्निशिखा",
+    latin: "Clerodendrum paniculatum",
+    location: "Hyderabad, IN",
+    season: "Summer & Monsoon (Jun–Oct)",
+    desc: "The Pagoda Flower produces dense clusters of bright red-orange star-shaped flowers with long, gracefully protruding stamens. Named for its tiered, pagoda-like flower clusters, this tropical shrub is native to Southeast Asia and is widely grown as an ornamental."
+  },
+  {
+    img: "images/firespike.jpg",
+    name: "Firespike",
+    hindi: "पटाखा फूल",
+    latin: "Odontonema strictum",
+    location: "Hyderabad, IN",
+    season: "Monsoon & Winter (Aug–Jan)",
+    desc: "Firespike produces tall, showy spikes of bright red tubular flowers that rise above glossy dark green foliage. Native to Central America, it's a favourite for attracting hummingbirds and butterflies, and is widely used in tropical landscaping for its bold vertical colour."
   }
 ];
